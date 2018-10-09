@@ -17,21 +17,18 @@ import java.util.List;
 public class User {
 
     @Id
-    @Column(name = "user_id")
-    private Long userId;
-
     @Column(name = "username")
     private String userName;
 
     @Column(name = "name")
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "salary_id")
-    private Salary salaries;
+    @OneToMany
+    @JoinColumn(name = "username")
+    private List<Salary> salaries;
 
     @OneToMany
-    @JoinColumn(name = "account_id")
+    @JoinColumn(name = "username")
     private List<Account> accounts;
 
 

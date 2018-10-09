@@ -1,14 +1,13 @@
 package com.tunisij.financeplanner.account;
 
 
+import com.tunisij.financeplanner.account.balance.Balance;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -21,8 +20,15 @@ public class Account {
     @Column(name = "account_id")
     private Long accountId;
 
-    @Column(name = "balance_id")
-    private Long balanceId;
+    @Column(name = "username")
+    private String username;
+
+//    @Column(name = "balance_id")
+//    private String balanceId;
+
+    @OneToMany
+    @JoinColumn(name = "balance_id")
+    private List<Balance> balances;
 
     @Column(name = "account_name")
     private String accountName;

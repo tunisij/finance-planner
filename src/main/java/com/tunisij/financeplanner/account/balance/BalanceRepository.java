@@ -1,8 +1,8 @@
-package com.tunisij.financeplanner.user;
+package com.tunisij.financeplanner.account.balance;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
-public interface UserRepository extends PagingAndSortingRepository<User, String> {
+public interface BalanceRepository extends PagingAndSortingRepository<Balance, BalanceId> {
 }
