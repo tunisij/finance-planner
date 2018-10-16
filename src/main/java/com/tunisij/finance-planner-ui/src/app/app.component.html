@@ -1,9 +1,18 @@
-<!--<p-sidebar visible="true">-->
-  <!--Create User-->
-<!--</p-sidebar>-->
+<p-sidebar [visible]="true" [modal]="false" [dismissible]="false" [showCloseIcon]="false">
+  <nav>
+    <div class="p-grid p-dir-col">
+      <div class="p-col">
+        <a class="p-col" routerLink="/finance-home" routerLinkActive="active">Home</a>
+      </div>
+      <div class="p-col">
+        <a class="p-col" routerLink="/create-user" routerLinkActive="active">Create User</a>
+      </div>
+    </div>
+  </nav>
+</p-sidebar>
 
 <div class="container">
   <div class="container-fluid">
-    <app-create-user></app-create-user>
+    <router-outlet></router-outlet>
   </div>
 </div>

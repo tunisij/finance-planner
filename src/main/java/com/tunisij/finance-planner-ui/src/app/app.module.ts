@@ -7,13 +7,26 @@ import {AccordionModule, ButtonModule, InputTextModule, SidebarModule} from 'pri
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { FinanceHomeComponent } from './finance-home/finance-home.component';
+import {RouterModule, Routes} from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: 'create-user', component: CreateUserComponent },
+  { path: 'finance-home',      component: FinanceHomeComponent},
+  { path: '',
+    redirectTo: '/finance-home',
+    pathMatch: 'full'
+  },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    FinanceHomeComponent
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,

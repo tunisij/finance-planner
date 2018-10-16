@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Salary} from './salary';
-import {Vehicle} from './vehicle';
-import {House} from './house';
-import {Account} from './account';
-import {User} from './user';
+import {Salary} from '../objects/salary';
+import {Vehicle} from '../objects/vehicle';
+import {House} from '../objects/house';
+import {Account} from '../objects/account';
+import {User} from '../objects/user';
 import {CreateService} from '../create.service';
 
 @Component({
