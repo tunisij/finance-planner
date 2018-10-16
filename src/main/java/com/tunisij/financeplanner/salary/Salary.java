@@ -15,10 +15,11 @@ public class Salary {
 
     @Id
     @Column(name = "salary_id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long salaryId;
 
-    @Column(name = "username")
-    private String username;
+    @Column(name = "user_id")
+    private String userId;
 
     @Column(name = "base_salary")
     private Double baseSalary;

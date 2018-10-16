@@ -18,10 +18,11 @@ public class Account {
 
     @Id
     @Column(name = "account_id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long accountId;
 
-    @Column(name = "username")
-    private String username;
+    @Column(name = "user_id")
+    private String userId;
 
 //    @Column(name = "balance_id")
 //    private String balanceId;

@@ -1,12 +1,10 @@
 export class User {
-  username?: String;
   name?: String;
-  email?: String;
+  emailAddress?: String;
 
-  constructor(username?: String, name?: String, email?: String) {
-    this.username = username;
+  constructor(name?: String, emailAddress?: String) {
     this.name = name;
-    this.email = email;
+    this.emailAddress = emailAddress;
   }
 
 }

@@ -31,10 +31,10 @@ export class CreateUserComponent implements OnInit {
 
   onSubmit() {
     this.createService.getUsers().subscribe(users => {
-      this.data = users;
+      this.data = users._embedded.users;
     });
     let a = 'a';
-    // this.createService.createUser(this.user).subscribe();
+    this.createService.createUser(this.user).subscribe();
   }
 
 }

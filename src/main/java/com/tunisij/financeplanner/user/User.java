@@ -17,19 +17,22 @@ import java.util.List;
 public class User {
 
     @Id
-    @Column(name = "username")
-    private String userName;
+    @Column(name = "user_id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long userId;
 
     @Column(name = "name")
     private String name;
 
     @OneToMany
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "user_id")
     private List<Salary> salaries;
 
     @OneToMany
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "user_id")
     private List<Account> accounts;
 
+    @Column(name = "email_address")
+    private String emailAddress;
 
 }
