@@ -1,10 +1,10 @@
 export class Account {
-  accountName: String;
+  name: String;
   balance: Number;
   date: Date;
 
-  constructor(accountName: String, balance: Number, date: Date) {
-    this.accountName = accountName;
+  constructor(name: String, balance: Number, date: Date) {
+    this.name = name;
     this.balance = balance;
     this.date = date;
   }

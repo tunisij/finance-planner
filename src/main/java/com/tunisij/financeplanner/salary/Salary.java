@@ -14,12 +14,12 @@ import javax.persistence.*;
 public class Salary {
 
     @Id
-    @Column(name = "salary_id")
+    @Column(name = "id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long salaryId;
+    private Long id;
 
-    @Column(name = "user_id")
-    private String userId;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "base_salary")
     private Double baseSalary;

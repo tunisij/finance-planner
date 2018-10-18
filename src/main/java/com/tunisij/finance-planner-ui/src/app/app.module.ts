@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { CreateUserComponent } from './create-user/create-user.component';
 import {AccordionModule, ButtonModule, CalendarModule, InputTextModule, SidebarModule, StepsModule, TabViewModule} from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
@@ -15,7 +14,6 @@ import { AccountInputComponent } from './input-data-flow/account-input/account-i
 import { AssetInputComponent } from './input-data-flow/asset-input/asset-input.component';
 
 const appRoutes: Routes = [
-  { path: 'create-user', component: CreateUserComponent },
   {
     path: 'input-data', component: InputDataFlowComponent,
     children: [
@@ -35,7 +33,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    CreateUserComponent,
     FinanceHomeComponent,
     InputDataFlowComponent,
     InputSalaryComponent,

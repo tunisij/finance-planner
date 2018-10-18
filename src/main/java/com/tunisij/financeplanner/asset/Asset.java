@@ -1,4 +1,4 @@
-package com.tunisij.financeplanner.account;
+package com.tunisij.financeplanner.asset;
 
 
 import lombok.AllArgsConstructor;
@@ -11,8 +11,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "account")
-public class Account {
+@Table(name = "asset")
+public class Asset {
 
     @Id
     @Column(name = "id")
@@ -22,7 +22,7 @@ public class Account {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "balance")
-    private String balance;
+    @Column(name = "value")
+    private String value;
 
 }
