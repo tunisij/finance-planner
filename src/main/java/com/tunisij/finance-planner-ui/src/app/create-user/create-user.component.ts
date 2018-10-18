@@ -14,7 +14,7 @@ import {CreateService} from '../create.service';
 export class CreateUserComponent implements OnInit {
 
   user: User = new User();
-  account: Account = new Account();
+  // account: Account = new Account();
   house: House = new House();
   vehicle: Vehicle = new Vehicle();
   salary: Salary = new Salary();

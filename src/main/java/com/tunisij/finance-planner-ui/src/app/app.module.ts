@@ -3,7 +3,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CreateUserComponent } from './create-user/create-user.component';
-import {AccordionModule, ButtonModule, InputTextModule, SidebarModule, StepsModule} from 'primeng/primeng';
+import {AccordionModule, ButtonModule, CalendarModule, InputTextModule, SidebarModule, StepsModule, TabViewModule} from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -19,6 +19,7 @@ const appRoutes: Routes = [
   {
     path: 'input-data', component: InputDataFlowComponent,
     children: [
+      {path: 'input-data', redirectTo: 'salary-input'},
       { path: 'salary-input', component: InputSalaryComponent },
       { path: 'account-input', component: AccountInputComponent },
       { path: 'asset-input', component: AssetInputComponent },
@@ -50,6 +51,8 @@ const appRoutes: Routes = [
     InputTextModule,
     StepsModule,
     ButtonModule,
+    TabViewModule,
+    CalendarModule,
     HttpClientModule,
     AccordionModule,
   ],

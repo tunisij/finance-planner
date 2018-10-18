@@ -1,3 +1,22 @@
-<p>
-  input-salary works!
-</p>
+<p-tabView>
+  <p-tabPanel *ngFor="let salary of salaries; let i = index" [selected]="i === selectedIndex" [header]="salary.companyName">
+    <div class="form-group">
+      <label for="companyName">Company Name</label>
+      <input [(ngModel)]="salary.companyName" name="companyName" id="companyName" class="form-control" type="text" pInputText required/>
+    </div>
+    <div class="form-group">
+      <label for="salary">Base Salary</label>
+      <input [(ngModel)]="salary.baseSalary" name="salary" id="salary" class="form-control" type="text" pInputText required/>
+    </div>
+    <div class="form-group">
+      <label for="bonus">Bonus</label>
+      <input [(ngModel)]="salary.bonus" name="bonus" id="bonus" class="form-control" type="text" pInputText required/>
+    </div>
+    <div class="form-group">
+      <label for="retirementMatch">401k Match %</label>
+      <input [(ngModel)]="salary.retirementMatch" name="retirementMatch" id="retirementMatch" class="form-control" type="text" pInputText required/>
+    </div>
+  </p-tabPanel>
+</p-tabView>
+
+<p-button (onClick)="addSalary()" label="Add Salary"></p-button>
