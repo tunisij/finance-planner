@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Account} from '../../objects/account';
-import {InputDataService} from '../input-data.service';
+import {InputDataService} from '../service/input-data.service';
 
 @Component({
   selector: 'app-account-input',
@@ -15,15 +15,18 @@ export class AccountInputComponent implements OnInit, OnDestroy {
   constructor(public inputDataService: InputDataService) { }
 
   ngOnInit() {
-    if (this.inputDataService.accounts !== undefined) {
-      this.accounts = this.inputDataService.accounts;
-    } else {
-      this.addAccount();
-    }
+    this.inputDataService.getAccounts().subscribe(accounts => {
+      this.accounts = accounts._embedded.accounts;
+
+      if (this.accounts.length === 0) {
+        this.addAccount();
+      }
+    });
   }
 
   ngOnDestroy() {
     this.inputDataService.accounts = this.accounts;
+    this.inputDataService.setAccounts(this.accounts).subscribe();
   }
 
   addAccount() {

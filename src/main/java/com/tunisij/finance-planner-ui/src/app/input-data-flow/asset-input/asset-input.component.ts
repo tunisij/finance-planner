@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {InputDataService} from '../input-data.service';
+import {InputDataService} from '../service/input-data.service';
 import {Asset} from '../../objects/asset';
 
 @Component({
