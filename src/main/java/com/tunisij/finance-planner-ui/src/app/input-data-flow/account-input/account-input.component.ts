@@ -12,15 +12,17 @@ export class AccountInputComponent implements OnInit, OnDestroy {
   accounts: Account[] = [];
   selectedIndex = 0;
 
-  constructor(public inputDataService: InputDataService) { }
+  constructor(public inputDataService: InputDataService) {
+  }
 
   ngOnInit() {
     this.inputDataService.getAccounts().subscribe(accounts => {
-      this.accounts = accounts._embedded.accounts;
+      this.accounts = accounts.map(account => new Account(account.name, account.balance, account.date, account.id));
 
       if (this.accounts.length === 0) {
         this.addAccount();
       }
+      this.selectedIndex = this.accounts.length - 1;
     });
   }
 
@@ -34,4 +36,15 @@ export class AccountInputComponent implements OnInit, OnDestroy {
     this.selectedIndex = this.accounts.length - 1;
   }
 
+  delete() {
+    if (this.accounts[this.selectedIndex].id === undefined) {
+      this.accounts.splice(this.selectedIndex, 1);
+      this.selectedIndex--;
+    } else {
+      this.inputDataService.deleteAccount(this.accounts[this.selectedIndex]).subscribe(() => {
+        this.accounts.splice(this.selectedIndex, 1);
+        this.selectedIndex--;
+      });
+    }
+  }
 }

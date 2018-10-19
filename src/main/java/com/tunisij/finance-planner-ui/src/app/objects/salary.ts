@@ -1,4 +1,5 @@
 export class Salary {
+  id?: String;
   name: String;
   baseSalary: Number = 0;
   bonus: Number = 0;

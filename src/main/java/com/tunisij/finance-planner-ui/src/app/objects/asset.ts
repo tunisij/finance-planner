@@ -1,4 +1,5 @@
 export class Asset {
+  id?: String;
   name: String;
   value: Number;
   date: Date;
