@@ -1,5 +1,5 @@
-<p-tabView>
-  <p-tabPanel *ngFor="let account of accounts; let i = index" [selected]="i === selectedIndex" [header]="account.name">
+<p-tabView (onChange)="onTabClick($event.index)">
+  <p-tabPanel *ngFor="let account of accounts; let i = index" [selected]="i === _selectedIndex" [header]="account.name">
     <div class="form-group">
       <label for="accountName">Account Name</label>
       <input [(ngModel)]="account.name" name="accountName" id="accountName" class="form-control" type="text" pInputText required/>

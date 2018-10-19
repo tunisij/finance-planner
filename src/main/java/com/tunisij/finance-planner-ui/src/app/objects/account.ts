@@ -4,11 +4,9 @@ export class Account extends BaseObject {
   name: String;
   balance: Number;
 
-  constructor(name: String, balance: Number, date: Date, id?: String) {
-    super();
+  constructor(name: String, balance: Number, date: any, id?: String) {
+    super(date, id);
     this.name = name;
     this.balance = balance;
-    this.date = date;
-    this.id = id;
   }
 }

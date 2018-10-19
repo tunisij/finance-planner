@@ -1,20 +1,14 @@
 export abstract class BaseObject {
   id?: String;
-  _links?: any;
+  date: Date;
+  private _links?: any;
 
-  private _date?: Date;
-
-  get date() {
-    return this._date;
-  }
-
-  set date(value: any) {
-    if (typeof value === 'string') {
-      this._date = new Date(value);
+  protected constructor(date: any, id?: String) {
+    if (typeof date === 'string') {
+      this.date = new Date(date.replace(/-/g, '\/'));
     } else {
-      this._date = value;
+      this.date = date;
     }
+    this.id = id;
   }
-
-  protected constructor() {}
 }

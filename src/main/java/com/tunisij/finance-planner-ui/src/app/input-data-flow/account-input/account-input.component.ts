@@ -10,7 +10,15 @@ import {InputDataService} from '../service/input-data.service';
 export class AccountInputComponent implements OnInit, OnDestroy {
 
   accounts: Account[] = [];
-  selectedIndex = 0;
+  _selectedIndex = 0;
+
+  get selectedIndex() {
+    return this._selectedIndex;
+  }
+
+  set selectedIndex(index: number) {
+    this._selectedIndex = index < 0 ? 0 : index;
+  }
 
   constructor(public inputDataService: InputDataService) {
   }
@@ -29,6 +37,10 @@ export class AccountInputComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.inputDataService.accounts = this.accounts;
     this.inputDataService.setAccounts(this.accounts).subscribe();
+  }
+
+  onTabClick(index) {
+    this.selectedIndex = index;
   }
 
   addAccount() {
