@@ -1,5 +1,5 @@
-<p-tabView>
-  <p-tabPanel *ngFor="let salary of salaries; let i = index" [selected]="i === selectedIndex" [header]="salary.name">
+<p-tabView (onChange)="onTabClick($event.index)">
+  <p-tabPanel *ngFor="let salary of salaries; let i = index" [selected]="i === _selectedIndex" [header]="salary.name">
     <div class="form-group">
       <label for="companyName">Company Name</label>
       <input [(ngModel)]="salary.name" name="companyName" id="companyName" class="form-control" type="text" pInputText required/>
@@ -20,3 +20,4 @@
 </p-tabView>
 
 <p-button (onClick)="addSalary()" label="Add Salary"></p-button>
+<button pButton type="button" label="Delete" (click)="delete()" class="ui-button-danger"></button>

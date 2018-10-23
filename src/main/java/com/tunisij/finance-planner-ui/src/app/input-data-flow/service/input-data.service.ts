@@ -24,12 +24,12 @@ export class InputDataService {
   constructor(private http: HttpClient) { }
 
   getSalaries(): Observable<any> {
-    return this.http.get(this.api + 'salaries').pipe(map(response => response['_embedded'].salaries));;
+    return this.http.get(this.api + 'salaries').pipe(map(response => response['_embedded'].salaries));
   }
 
   setSalaries(salaries: Salary[]) {
     return from(salaries).pipe(
-      mergeMap(salary => <Observable<Salary>> this.http.post<Salary>(this.api + 'accounts', salary))
+      mergeMap(salary => <Observable<Salary>> this.http.post<Salary>(this.api + 'salaries', salary))
     );
   }
 
@@ -52,7 +52,7 @@ export class InputDataService {
   }
 
   getAssets(): Observable<any> {
-    return this.http.get(this.api + 'assets').pipe(map(response => response['_embedded'].assets));;
+    return this.http.get(this.api + 'assets').pipe(map(response => response['_embedded'].assets));
   }
 
   setAssets(assets: Asset[]) {

@@ -10,24 +10,52 @@ import {Salary} from '../../objects/salary';
 export class InputSalaryComponent implements OnInit, OnDestroy {
 
   salaries: Salary[] = [];
-  selectedIndex = 0;
+  _selectedIndex = 0;
+
+  get selectedIndex() {
+    return this._selectedIndex;
+  }
+
+  set selectedIndex(index: number) {
+    this._selectedIndex = index < 0 ? 0 : index;
+  }
 
   constructor(public inputDataService: InputDataService) { }
 
   ngOnInit() {
-    if (this.inputDataService.salaries !== undefined) {
-      this.salaries = this.inputDataService.salaries;
-    } else {
-      this.addSalary();
-    }
+    this.inputDataService.getSalaries().subscribe(salaries => {
+      this.salaries = salaries.map(salary => new Salary(salary.name, salary.baseSalary, salary.bonus, salary.retirementMatch, salary.id));
+
+      if (this.salaries.length === 0) {
+        this.addSalary();
+      }
+      this.selectedIndex = this.salaries.length - 1;
+    });
   }
 
   ngOnDestroy() {
     this.inputDataService.salaries = this.salaries;
+    this.inputDataService.setSalaries(this.salaries).subscribe();
+  }
+
+  onTabClick(index) {
+    this.selectedIndex = index;
   }
 
   addSalary() {
-    this.salaries.push(new Salary('Company ' + (this.salaries.length + 1), 0, 0, 0, new Date()));
+    this.salaries.push(new Salary('Company ' + (this.salaries.length + 1), 0, 0, 0));
     this.selectedIndex = this.salaries.length - 1;
+  }
+
+  delete() {
+    if (this.salaries[this.selectedIndex].id === undefined) {
+      this.salaries.splice(this.selectedIndex, 1);
+      this.selectedIndex--;
+    } else {
+      this.inputDataService.deleteSalary(this.salaries[this.selectedIndex]).subscribe(() => {
+        this.salaries.splice(this.selectedIndex, 1);
+        this.selectedIndex--;
+      });
+    }
   }
 }

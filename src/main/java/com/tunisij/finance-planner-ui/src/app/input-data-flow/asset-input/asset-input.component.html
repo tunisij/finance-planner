@@ -1,5 +1,5 @@
-<p-tabView>
-  <p-tabPanel *ngFor="let asset of assets; let i = index" [selected]="i === selectedIndex" [header]="asset.name">
+<p-tabView (onChange)="onTabClick($event.index)">
+  <p-tabPanel *ngFor="let asset of assets; let i = index" [selected]="i === _selectedIndex" [header]="asset.name">
     <div class="form-group">
       <label for="assetName">Asset Name</label>
       <input [(ngModel)]="asset.name" name="assetName" id="assetName" class="form-control" type="text" pInputText required/>
@@ -13,3 +13,4 @@
 </p-tabView>
 
 <p-button (onClick)="addAsset()" label="Add Asset"></p-button>
+<button pButton type="button" label="Delete" (click)="delete()" class="ui-button-danger"></button>

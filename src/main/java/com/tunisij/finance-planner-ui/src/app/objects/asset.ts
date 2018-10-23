@@ -1,12 +1,12 @@
-export class Asset {
-  id?: String;
-  name: String;
-  value: Number;
-  date: Date;
+import {BaseObject} from './baseObject';
 
-  constructor(name: String, value: Number, date: Date) {
+export class Asset extends BaseObject {
+  name: String;
+  value = 0;
+
+  constructor(name: String, value: number, date: any, id?: String) {
+    super(date, id);
     this.name = name;
     this.value = value;
-    this.date = date;
   }
 }

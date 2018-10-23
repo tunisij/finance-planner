@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -25,4 +26,6 @@ public class Asset {
     @Column(name = "value")
     private String value;
 
+    @Column(name = "date")
+    private LocalDate date;
 }
