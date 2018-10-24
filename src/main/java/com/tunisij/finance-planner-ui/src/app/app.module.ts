@@ -2,7 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
-import {AccordionModule, ButtonModule, CalendarModule, InputTextModule, SidebarModule, StepsModule, TabViewModule} from 'primeng/primeng';
+import {
+  AccordionModule,
+  ButtonModule,
+  CalendarModule,
+  ChartModule,
+  InputTextModule,
+  SidebarModule,
+  StepsModule,
+  TabViewModule
+} from 'primeng/primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -12,6 +21,8 @@ import { InputDataFlowComponent } from './input-data-flow/input-data-flow.compon
 import { InputSalaryComponent } from './input-data-flow/input-salary/input-salary.component';
 import { AccountInputComponent } from './input-data-flow/account-input/account-input.component';
 import { AssetInputComponent } from './input-data-flow/asset-input/asset-input.component';
+import { SalaryBreakdownComponent } from './finance-home/salary-breakdown/salary-breakdown.component';
+import { NetWorthBreakdownComponent } from './finance-home/net-worth-breakdown/net-worth-breakdown.component';
 
 const appRoutes: Routes = [
   {
@@ -37,7 +48,9 @@ const appRoutes: Routes = [
     InputDataFlowComponent,
     InputSalaryComponent,
     AccountInputComponent,
-    AssetInputComponent
+    AssetInputComponent,
+    SalaryBreakdownComponent,
+    NetWorthBreakdownComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -48,6 +61,7 @@ const appRoutes: Routes = [
     InputTextModule,
     StepsModule,
     ButtonModule,
+    ChartModule,
     TabViewModule,
     CalendarModule,
     HttpClientModule,

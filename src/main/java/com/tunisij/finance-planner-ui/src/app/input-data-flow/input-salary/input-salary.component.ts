@@ -43,7 +43,7 @@ export class InputSalaryComponent implements OnInit, OnDestroy {
   }
 
   addSalary() {
-    this.salaries.push(new Salary('Company ' + (this.salaries.length + 1), 0, 0, 0));
+    this.salaries.push(new Salary('Company ' + (this.salaries.length + 1), 0, 0, 0, new Date()));
     this.selectedIndex = this.salaries.length - 1;
   }
 

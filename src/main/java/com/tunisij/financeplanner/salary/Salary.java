@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -29,5 +30,8 @@ public class Salary {
 
     @Column(name = "retirement_match")
     private Double retirementMatch;
+
+    @Column(name = "date")
+    private LocalDate date;
 }
 
