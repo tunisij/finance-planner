@@ -1,2 +1,23 @@
 <h2 style="text-align: center">Net Worth Breakdown</h2>
 <p-chart type="pie" [data]="netWorthData"></p-chart>
+
+<p-table [value]="data">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Item</th>
+      <th>Value</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-data>
+    <tr>
+      <td>{{data?.label}}</td>
+      <td>{{data?.value | currency:'$'}}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="footer" let-columns>
+    <tr>
+      <th>Total</th>
+      <th>{{total | currency:'$'}}</th>
+    </tr>
+  </ng-template>
+</p-table>

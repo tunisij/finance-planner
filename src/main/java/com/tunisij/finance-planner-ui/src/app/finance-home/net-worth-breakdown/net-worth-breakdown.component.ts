@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {InputDataService} from '../../input-data-flow/service/input-data.service';
-import {Account} from '../../objects/account';
-import {Asset} from '../../objects/asset';
 import {forkJoin} from 'rxjs';
 
 @Component({
@@ -11,11 +9,10 @@ import {forkJoin} from 'rxjs';
 })
 export class NetWorthBreakdownComponent implements OnInit {
 
-  accounts: Account[];
-  assets: Asset[];
   netWorthData: any;
-  labels: string[] = [];
-  data: any[] = [];
+  data: {label: string, value: any}[] = [];
+  total: number;
+
   colors = [
     '#FF6384',
     '#36A2EB',
@@ -36,20 +33,21 @@ export class NetWorthBreakdownComponent implements OnInit {
     forkJoin(this.inputDataService.getAccounts(), this.inputDataService.getAssets()).subscribe(dataList => {
       dataList.forEach(data => {
         data.forEach(typedData => {
-          this.labels.push(typedData.name);
-          this.data.push(typedData.balance === undefined ? typedData.value : typedData.balance);
+          this.data.push({label: typedData.name, value: typedData.balance === undefined ? typedData.value : typedData.balance});
         });
       });
 
       this.netWorthData = {
-        labels: this.labels,
+        labels: this.data.map(item => item.label),
         datasets: [
           {
-            data: this.data,
+            data: this.data.map(item => item.value),
             backgroundColor: this.colors,
             hoverBackgroundColor: this.colors
           }]
       };
+
+      this.total = this.data.reduce((total, item) => total + Number(item.value), 0);
     });
   }
 

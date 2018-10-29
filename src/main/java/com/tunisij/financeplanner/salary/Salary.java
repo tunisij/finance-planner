@@ -30,8 +30,5 @@ public class Salary {
 
     @Column(name = "retirement_match")
     private Double retirementMatch;
-
-    @Column(name = "date")
-    private LocalDate date;
 }
 

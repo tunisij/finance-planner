@@ -23,6 +23,7 @@ import { AccountInputComponent } from './input-data-flow/account-input/account-i
 import { AssetInputComponent } from './input-data-flow/asset-input/asset-input.component';
 import { SalaryBreakdownComponent } from './finance-home/salary-breakdown/salary-breakdown.component';
 import { NetWorthBreakdownComponent } from './finance-home/net-worth-breakdown/net-worth-breakdown.component';
+import {TableModule} from 'primeng/table';
 
 const appRoutes: Routes = [
   {
@@ -60,6 +61,7 @@ const appRoutes: Routes = [
     SidebarModule,
     InputTextModule,
     StepsModule,
+    TableModule,
     ButtonModule,
     ChartModule,
     TabViewModule,
