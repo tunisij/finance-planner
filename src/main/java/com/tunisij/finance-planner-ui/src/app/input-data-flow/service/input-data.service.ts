@@ -6,6 +6,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {from, Observable} from 'rxjs';
 import {map, mergeMap} from 'rxjs/operators';
 import {BudgetCategory} from '../../objects/budgetCategory';
+import {ActualSpend} from '../../objects/actualSpend';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class InputDataService {
   salaries: Salary[];
   assets: Asset[];
   budgetCategories: BudgetCategory[];
+  actualSpends: ActualSpend[];
 
   api = 'http://localhost:8080/api/';
 
@@ -79,5 +81,19 @@ export class InputDataService {
 
   deleteBudgetCategories(budget: BudgetCategory) {
     return this.http.delete(this.api + 'budgetCategories/' + budget.id, this.httpOptions);
+  }
+
+  getActualSpends(): Observable<any> {
+    return this.http.get(this.api + 'actualSpends').pipe(map(response => response['_embedded'].actualSpends));
+  }
+
+  setActualSpends(actualSpends: ActualSpend[]) {
+    return from(actualSpends).pipe(
+      mergeMap(actualSpend => <Observable<ActualSpend>> this.http.post<ActualSpend>(this.api + 'actualSpends', actualSpend))
+    );
+  }
+
+  deleteActualSpends(actualSpend: ActualSpend) {
+    return this.http.delete(this.api + 'actualSpends/' + actualSpend.id, this.httpOptions);
   }
 }

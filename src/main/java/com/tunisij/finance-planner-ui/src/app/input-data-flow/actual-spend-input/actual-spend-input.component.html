@@ -1,0 +1,19 @@
+<p-tabView (onChange)="onTabClick($event.index)">
+  <p-tabPanel *ngFor="let actualSpend of actualSpends; let i = index" [selected]="i === _selectedIndex" [header]="actualSpend.name">
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input [(ngModel)]="actualSpend.name" name="category" id="category" class="form-control" type="text" pInputText required/>
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input [(ngModel)]="actualSpend.amount" name="amount" id="amount" class="form-control" type="text" pInputText required/>
+    </div>
+    <div class="form-group">
+      <label for="month">Month</label>
+      <p-calendar name="month" id="month" [(ngModel)]="actualSpend.date" [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2100"></p-calendar>
+    </div>
+  </p-tabPanel>
+</p-tabView>
+
+<p-button (onClick)="addActualSpend()" label="Add Actual Spend"></p-button>
+<button pButton type="button" label="Delete" (click)="delete()" class="ui-button-danger"></button>
