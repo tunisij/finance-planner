@@ -23,7 +23,7 @@ export class BudgetInputComponent implements OnInit, OnDestroy {
   constructor(public inputDataService: InputDataService) { }
 
   ngOnInit() {
-    this.inputDataService.getbudgetCategories().subscribe(budgetCategories => {
+    this.inputDataService.getBudgetCategories().subscribe(budgetCategories => {
       this.budgetCategories = budgetCategories.map(budget => new BudgetCategory(budget.name, budget.amount, budget.id));
 
       if (this.budgetCategories.length === 0) {
@@ -35,7 +35,7 @@ export class BudgetInputComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.inputDataService.budgetCategories = this.budgetCategories;
-    this.inputDataService.setbudgetCategories(this.budgetCategories).subscribe();
+    this.inputDataService.setBudgetCategories(this.budgetCategories).subscribe();
   }
 
   onTabClick(index) {

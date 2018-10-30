@@ -67,11 +67,11 @@ export class InputDataService {
     return this.http.delete(this.api + 'assets/' + asset.id, this.httpOptions);
   }
 
-  getbudgetCategories(): Observable<any> {
+  getBudgetCategories(): Observable<any> {
     return this.http.get(this.api + 'budgetCategories').pipe(map(response => response['_embedded'].budgetCategories));
   }
 
-  setbudgetCategories(budgetCategories: BudgetCategory[]) {
+  setBudgetCategories(budgetCategories: BudgetCategory[]) {
     return from(budgetCategories).pipe(
       mergeMap(budget => <Observable<BudgetCategory>> this.http.post<BudgetCategory>(this.api + 'budgetCategories', budget))
     );

@@ -25,6 +25,7 @@ import { SalaryBreakdownComponent } from './finance-home/salary-breakdown/salary
 import { NetWorthBreakdownComponent } from './finance-home/net-worth-breakdown/net-worth-breakdown.component';
 import {TableModule} from 'primeng/table';
 import { BudgetInputComponent } from './input-data-flow/budget-input/budget-input.component';
+import { BudgetBreakdownComponent } from './finance-home/budget-breakdown/budget-breakdown.component';
 
 const appRoutes: Routes = [
   {
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
   { path: 'finance-home', component: FinanceHomeComponent },
   { path: 'app-net-worth-breakdown', component: NetWorthBreakdownComponent },
   { path: 'app-salary-breakdown', component: SalaryBreakdownComponent },
+  { path: 'app-budget-breakdown', component: BudgetBreakdownComponent },
   { path: '',
     redirectTo: '/finance-home',
     pathMatch: 'full'
@@ -56,7 +58,8 @@ const appRoutes: Routes = [
     AssetInputComponent,
     SalaryBreakdownComponent,
     NetWorthBreakdownComponent,
-    BudgetInputComponent
+    BudgetInputComponent,
+    BudgetBreakdownComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

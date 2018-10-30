@@ -37,7 +37,7 @@ export class InputDataFlowComponent implements OnInit {
         }
       },
       {
-        label: 'Budget',
+        label: 'Monthly Budget',
         command: (event: any) => {
           this.activeIndex = 3;
           this.router.navigate(['input-data', 'budget-input']);

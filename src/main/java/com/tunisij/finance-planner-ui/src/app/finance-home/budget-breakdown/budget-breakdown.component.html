@@ -1,0 +1,29 @@
+<h2 style="text-align: center">Monthly Budget Breakdown</h2>
+
+<p-chart type="radar" [data]="chartData"></p-chart>
+
+<br><br>
+
+<p-table [value]="budgetCategories">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Category</th>
+      <th>Amount</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-category>
+    <tr>
+      <td>{{category?.name}}</td>
+      <td>{{category?.amount | currency:'$'}}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="footer" let-columns>
+    <tr>
+      <th>Total</th>
+      <th>{{total | currency:'$'}}</th>
+    </tr>
+  </ng-template>
+</p-table>
+
+<br><br><br>
+
