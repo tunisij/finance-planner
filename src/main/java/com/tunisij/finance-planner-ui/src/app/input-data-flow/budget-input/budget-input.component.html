@@ -1,0 +1,15 @@
+<p-tabView (onChange)="onTabClick($event.index)">
+  <p-tabPanel *ngFor="let budgetCategory of budgetCategories; let i = index" [selected]="i === _selectedIndex" [header]="budgetCategory.name">
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input [(ngModel)]="budgetCategory.name" name="category" id="category" class="form-control" type="text" pInputText required/>
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input [(ngModel)]="budgetCategory.amount" name="amount" id="amount" class="form-control" type="text" pInputText required/>
+    </div>
+  </p-tabPanel>
+</p-tabView>
+
+<p-button (onClick)="addBudgetCategory()" label="Add Budget Category"></p-button>
+<button pButton type="button" label="Delete" (click)="delete()" class="ui-button-danger"></button>
