@@ -36,6 +36,8 @@ const appRoutes: Routes = [
     ]
   },
   { path: 'finance-home', component: FinanceHomeComponent },
+  { path: 'app-net-worth-breakdown', component: NetWorthBreakdownComponent },
+  { path: 'app-salary-breakdown', component: SalaryBreakdownComponent },
   { path: '',
     redirectTo: '/finance-home',
     pathMatch: 'full'

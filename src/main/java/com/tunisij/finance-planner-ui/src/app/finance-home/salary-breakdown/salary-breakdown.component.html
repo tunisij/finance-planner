@@ -1,1 +1,33 @@
-<p-chart type="pie" [data]="data"></p-chart>
+<h2 style="text-align: center">Salary Breakdown By Year</h2>
+<p-chart #chart type="bar" [data]="chartData" [options]="chartOptions"></p-chart>
+
+<br>
+
+<p-table [value]="salaries">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Name</th>
+      <th>Base Salary</th>
+      <th>Bonus</th>
+      <th>401k</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-salary>
+    <tr>
+      <td>{{salary?.name}}</td>
+      <td>{{salary?.baseSalary | currency:'$'}}</td>
+      <td>{{salary?.bonus | currency:'$'}}</td>
+      <td>{{salary?.retirementMatch * salary.baseSalary / 100 | currency:'$'}}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="footer" let-columns>
+    <tr>
+      <th>Total</th>
+      <th>{{total?.baseSalary | currency:'$'}}</th>
+      <th>{{total?.bonus | currency:'$'}}</th>
+      <th>{{total?.retirementMatch | currency:'$'}}</th>
+    </tr>
+  </ng-template>
+</p-table>
+
+<br><br><br>
