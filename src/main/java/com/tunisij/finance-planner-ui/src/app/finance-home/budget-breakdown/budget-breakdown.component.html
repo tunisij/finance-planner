@@ -4,23 +4,25 @@
 
 <br><br>
 
-<p-table [value]="budgetCategories">
-  <ng-template pTemplate="header">
+<p-table [value]="completeData" >
+  <ng-template pTemplate="header" let-category>
     <tr>
       <th>Category</th>
-      <th>Amount</th>
+      <th>Budget Amount</th>
+      <th *ngFor="let actualSpendId of actualSpendIds">{{actualSpends[this.getActualSpendIndex(actualSpendId)].name}}</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-category>
     <tr>
       <td>{{category?.name}}</td>
       <td>{{category?.amount | currency:'$'}}</td>
+      <td *ngFor="let actualSpend of category?.actualSpends">{{actualSpend?.amount | currency:'$'}}</td>
     </tr>
   </ng-template>
   <ng-template pTemplate="footer" let-columns>
     <tr>
       <th>Total</th>
-      <th>{{total | currency:'$'}}</th>
+      <th *ngFor="let total of totals">{{total | currency:'$'}}</th>
     </tr>
   </ng-template>
 </p-table>

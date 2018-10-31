@@ -11,10 +11,11 @@ import {ActualSpend} from '../../objects/actualSpend';
 })
 export class BudgetBreakdownComponent implements OnInit {
 
+  completeData: any = [] = [];
   actualSpendIds: string[] = [];
   actualSpends: ActualSpend[];
   budgetCategories: BudgetCategory[];
-  total: number;
+  totals: number[] = [];
   chartData: any = {};
 
   colors = [
@@ -52,6 +53,22 @@ export class BudgetBreakdownComponent implements OnInit {
         );
       });
 
+      this.totals.push(this.budgetCategories.reduce((total, category) => total + category.amount, 0));
+
+      this.completeData = this.budgetCategories.slice();
+      this.actualSpendIds.forEach(id => {
+        this.completeData.forEach((record, index) => {
+          if (!record.actualSpends) {
+            record.actualSpends = [];
+          }
+          let test = this.actualSpends.filter(actualSpend => {
+            return actualSpend.actualSpendId === id;
+          });
+          record.actualSpends.push(test[index]);
+        });
+          this.totals.push(this.completeData.map(data => data.actualSpends).reduce((total, actualSpend) => total + actualSpend[id].amount, 0));
+      });
+
       this.chartData = {
         labels: this.budgetCategories.map(category => category.name),
         datasets: [
@@ -67,7 +84,6 @@ export class BudgetBreakdownComponent implements OnInit {
           }
         ].concat(actualSpendsDatasets)
       };
-      this.total = this.budgetCategories.reduce((total, category) => total + category.amount, 0);
     });
   }
 
