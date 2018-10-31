@@ -13,8 +13,13 @@ public class ActualSpendController {
     @Autowired ActualSpendRepository actualSpendRepository;
     @Autowired ActualSpendService actualSpendService;
 
-    @GetMapping("/getActualSpendForEveryBudgetCategory/{actualSpendId}")
-    public List<ActualSpend> getActualSpendForEveryBudgetCategory(@PathVariable Long actualSpendId) {
-        return actualSpendService.getActualSpendForEveryBudgetCategory(actualSpendId);
+    @GetMapping("/getActualSpendsForEveryBudgetCategory")
+    public List<ActualSpend> getActualSpendsForEveryBudgetCategory() {
+        return actualSpendService.getActualSpendsForEveryBudgetCategory();
+    }
+
+    @GetMapping("/getActualSpendsForEveryBudgetCategory/{actualSpendId}")
+    public List<ActualSpend> getActualSpendsForEveryBudgetCategory(@PathVariable Long actualSpendId) {
+        return actualSpendService.getActualSpendsForEveryBudgetCategory(actualSpendId);
     }
 }

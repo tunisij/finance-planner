@@ -83,8 +83,16 @@ export class InputDataService {
     return this.http.delete(this.api + 'budgetCategories/' + budget.id, this.httpOptions);
   }
 
-  getActualSpends(): Observable<any> {
-    return this.http.get(this.api + 'actualSpends').pipe(map(response => response['_embedded'].actualSpends));
+  getActualSpends(id?: number): Observable<ActualSpend[]> {
+    let url = 'http://localhost:8080/getActualSpendsForEveryBudgetCategory';
+    if (id !== undefined) {
+      url += '/' + id.toString();
+    }
+
+    return this.http.get<ActualSpend[]>(url).pipe<ActualSpend[]>(
+      map(actualSpends => {
+        return actualSpends.map(actualSpend => new ActualSpend(actualSpend.amount, actualSpend.name, actualSpend.category, actualSpend.actualSpendId, actualSpend.budgetCategoryId, actualSpend.id));
+      }));
   }
 
   setActualSpends(actualSpends: ActualSpend[]) {

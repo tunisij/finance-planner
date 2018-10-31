@@ -5,12 +5,9 @@ import com.tunisij.financeplanner.budget.BudgetCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static java.time.LocalDate.now;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -19,7 +16,17 @@ public class ActualSpendService {
     @Autowired
     BudgetCategoryRepository budgetCategoryRepository;
 
-    public List<ActualSpend> getActualSpendForEveryBudgetCategory(Long actualSpendId) {
+    @Autowired
+    ActualSpendRepository actualSpendRepository;
+
+    public List<ActualSpend> getActualSpendsForEveryBudgetCategory() {
+        return actualSpendRepository.findAllIds()
+                .stream()
+                .flatMap(id -> getActualSpendsForEveryBudgetCategory(id).stream())
+                .collect(toList());
+    }
+
+    public List<ActualSpend> getActualSpendsForEveryBudgetCategory(Long actualSpendId) {
 
         List<BudgetCategory> budgetCategories = budgetCategoryRepository.findBudgetCategories();
 
@@ -30,9 +37,13 @@ public class ActualSpendService {
                 .collect(toList());
 
         for (BudgetCategory budgetCategory : budgetCategories) {
-            if (!actualSpends.stream().map(e -> e.getBudgetCategoryId()).collect(toList()).contains(budgetCategory.getId())) {
+            if (actualSpends.stream().map(e -> e.getBudgetCategoryId()).collect(toList()).contains(budgetCategory.getId())) {
+                for (ActualSpend actualSpend: budgetCategory.getActualSpend()) {
+                    actualSpend.setCategory(budgetCategory.getName());
+                }
+            } else {
                 String name = actualSpends.size() > 0 ? actualSpends.get(0).getName() : "New Actual Spend";
-                actualSpends.add(new ActualSpend(1L, name , actualSpendId, budgetCategory.getId(), 0.0));
+                actualSpends.add(new ActualSpend(name , actualSpendId, budgetCategory.getId(), 0.0, budgetCategory.getName()));
             }
         }
         return actualSpends;

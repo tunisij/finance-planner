@@ -1,17 +1,17 @@
-import {BaseObject} from './baseObject';
-import {BudgetCategory} from './budgetCategory';
-
-export class ActualSpend extends BaseObject {
+export class ActualSpend {
   id?: String;
+  actualSpendId: String;
+  budgetCategoryId: String;
   name: String;
   amount = 0;
-  budgetCategories: BudgetCategory[];
+  category: String;
 
-  constructor(amount: number, date: Date, budgetCategories: BudgetCategory[], id?: String) {
-    super(date, id);
+  constructor(amount: number, name: String, category: String, actualSpendId: String, budgetCategoryId: String, id?: String) {
     this.amount = amount;
-    this.budgetCategories = budgetCategories;
+    this.actualSpendId = actualSpendId;
+    this.name = name;
     this.id = id;
-    this.name = date.toLocaleString('en-us', { month: 'long' }) + ' ' + date.getFullYear();
+    this.category = category;
+    this.budgetCategoryId = budgetCategoryId;
   }
 }

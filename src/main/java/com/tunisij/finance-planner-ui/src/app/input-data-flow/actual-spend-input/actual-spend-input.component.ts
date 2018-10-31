@@ -12,6 +12,7 @@ export class ActualSpendInputComponent implements OnInit, OnDestroy {
 
   budgetCategories: BudgetCategory[] = [];
   actualSpends: ActualSpend[] = [];
+  actualSpendIds: string[] = [];
   _selectedIndex = 0;
 
   get selectedIndex() {
@@ -25,17 +26,14 @@ export class ActualSpendInputComponent implements OnInit, OnDestroy {
   constructor(public inputDataService: InputDataService) { }
 
   ngOnInit() {
-    this.inputDataService.getBudgetCategories().subscribe(budgetCategories => {
-      this.budgetCategories = budgetCategories.map(budget => new BudgetCategory(budget.name, budget.amount, budget.id));
-    });
-
     this.inputDataService.getActualSpends().subscribe(actualSpends => {
-      this.actualSpends = actualSpends.map(actualSpend => new ActualSpend(actualSpend.amount, actualSpend.date, actualSpend.budgetCategories, actualSpend.id));
+      this.actualSpends = actualSpends;
+      this.actualSpendIds = this.getUniqueArray(actualSpends.map(actualSpend => actualSpend.actualSpendId));
 
-      if (this.actualSpends.length === 0) {
+      if (this.actualSpendIds.length === 0) {
         this.addActualSpend();
       }
-      this.selectedIndex = this.actualSpends.length - 1;
+      this.selectedIndex = this.actualSpendIds.length - 1;
     });
   }
 
@@ -49,8 +47,11 @@ export class ActualSpendInputComponent implements OnInit, OnDestroy {
   }
 
   addActualSpend() {
-    this.actualSpends.push(new ActualSpend(0, new Date(), null));
-    this.selectedIndex = this.actualSpends.length - 1;
+    this.inputDataService.getActualSpends(this.actualSpendIds.length).subscribe(actualSpends => {
+      this.actualSpends = this.actualSpends.concat(actualSpends);
+      this.actualSpendIds.push(this.actualSpendIds.length.toString());
+      this.selectedIndex = this.actualSpendIds.length - 1;
+    });
   }
 
   delete() {
@@ -63,6 +64,20 @@ export class ActualSpendInputComponent implements OnInit, OnDestroy {
         this.selectedIndex--;
       });
     }
+  }
+
+  getActualSpends(index: number): ActualSpend[] {
+    return this.actualSpends.filter(actualSpend => Number(actualSpend.actualSpendId) === index);
+  }
+
+  getUniqueArray(array) {
+    let result = [];
+    for (let x = 0; x < array.length; x++) {
+      if (result.indexOf(array[x]) === -1) {
+        result.push(array[x]);
+      }
+    }
+    return result;
   }
 
 }
