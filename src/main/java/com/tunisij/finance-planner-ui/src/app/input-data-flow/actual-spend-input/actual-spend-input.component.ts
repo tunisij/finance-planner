@@ -70,6 +70,10 @@ export class ActualSpendInputComponent implements OnInit, OnDestroy {
     return this.actualSpends.filter(actualSpend => Number(actualSpend.actualSpendId) === index);
   }
 
+  getActualSpendIndex(actualSpendId) {
+    return this.actualSpends.map(actualSpend => Number(actualSpend.actualSpendId)).indexOf(actualSpendId);
+  }
+
   getUniqueArray(array) {
     let result = [];
     for (let x = 0; x < array.length; x++) {
