@@ -12,7 +12,7 @@ export class ActualSpendInputComponent implements OnInit, OnDestroy {
 
   budgetCategories: BudgetCategory[] = [];
   actualSpends: ActualSpend[] = [];
-  actualSpendIds: string[] = [];
+  actualSpendIds: number[] = [];
   _selectedIndex = 0;
 
   get selectedIndex() {
@@ -49,7 +49,7 @@ export class ActualSpendInputComponent implements OnInit, OnDestroy {
   addActualSpend() {
     this.inputDataService.getActualSpends(this.actualSpendIds.length).subscribe(actualSpends => {
       this.actualSpends = this.actualSpends.concat(actualSpends);
-      this.actualSpendIds.push(this.actualSpendIds.length.toString());
+      this.actualSpendIds.push(this.actualSpendIds.length);
       this.selectedIndex = this.actualSpendIds.length - 1;
     });
   }
