@@ -55,15 +55,13 @@ export class ActualSpendInputComponent implements OnInit, OnDestroy {
   }
 
   delete() {
-    if (this.actualSpends[this.selectedIndex].id === undefined) {
-      this.actualSpends.splice(this.selectedIndex, 1);
-      this.selectedIndex--;
-    } else {
-      this.inputDataService.deleteActualSpends(this.actualSpends[this.selectedIndex]).subscribe(() => {
-        this.actualSpends.splice(this.selectedIndex, 1);
-        this.selectedIndex--;
-      });
-    }
+    this.actualSpends.filter(actualSpend => Number(actualSpend.actualSpendId) === this.selectedIndex).forEach(actualSpend => {
+      this.inputDataService.deleteActualSpends(actualSpend).subscribe();
+    });
+
+    this.actualSpends = this.actualSpends.filter(actualSpend => Number(actualSpend.actualSpendId) !== this.selectedIndex);
+    this.actualSpendIds.splice(this.selectedIndex, 1);
+    this.selectedIndex--;
   }
 
   getActualSpends(index: number): ActualSpend[] {

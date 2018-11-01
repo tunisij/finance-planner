@@ -1,5 +1,5 @@
 <p-tabView (onChange)="onTabClick($event.index)">
-  <p-tabPanel *ngFor="let actualSpendId of actualSpendIds; let i = index" [selected]="i === _selectedIndex" [header]="actualSpends[getActualSpendIndex(actualSpendId)].name">
+  <p-tabPanel *ngFor="let actualSpendId of actualSpendIds; let i = index" [selected]="i === _selectedIndex" [header]="actualSpends[getActualSpendIndex(actualSpendId)]?.name">
     <div class="form-group">
       <label for="name">Name</label>
       <input [(ngModel)]="actualSpends[getActualSpendIndex(actualSpendId)].name" name="name" id="name" class="form-control" type="text" pInputText required/>
