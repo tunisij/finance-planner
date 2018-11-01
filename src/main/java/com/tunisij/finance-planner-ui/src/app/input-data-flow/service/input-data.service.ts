@@ -80,7 +80,7 @@ export class InputDataService {
   }
 
   deleteBudgetCategories(budget: BudgetCategory) {
-    return this.http.delete(this.api + 'budgetCategories/' + budget.id, this.httpOptions);
+    return this.http.delete('http://localhost:8080/deleteBudgetCategories/' + budget.id, this.httpOptions);
   }
 
   getActualSpends(id?: number): Observable<ActualSpend[]> {
@@ -104,4 +104,5 @@ export class InputDataService {
   deleteActualSpends(actualSpend: ActualSpend) {
     return this.http.delete(this.api + 'actualSpends/' + actualSpend.id, this.httpOptions);
   }
+
 }

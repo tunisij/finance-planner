@@ -48,4 +48,9 @@ public class ActualSpendService {
         }
         return actualSpends;
     }
+
+    public void deleteBudgetCategories(Long budgetCategoryId) {
+        actualSpendRepository.deleteActualSpendsByBudgetCategoryId(budgetCategoryId);
+        budgetCategoryRepository.deleteById(budgetCategoryId);
+    }
 }
