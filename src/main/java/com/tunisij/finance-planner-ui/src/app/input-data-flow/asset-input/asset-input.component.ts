@@ -25,7 +25,7 @@ export class AssetInputComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.inputDataService.getAssets().subscribe(assets => {
-      this.assets = assets.map(asset => new Asset(asset.name, asset.value, asset.date, asset.id));
+      this.assets = assets.map(asset => new Asset(asset.name, asset.value, asset.id));
 
       if (this.assets.length === 0) {
         this.addAsset();
@@ -44,7 +44,7 @@ export class AssetInputComponent implements OnInit, OnDestroy {
   }
 
   addAsset() {
-    this.assets.push(new Asset('Asset ' + (this.assets.length + 1), 0, new Date()));
+    this.assets.push(new Asset('Asset ' + (this.assets.length + 1), 0));
     this.selectedIndex = this.assets.length - 1;
   }
 

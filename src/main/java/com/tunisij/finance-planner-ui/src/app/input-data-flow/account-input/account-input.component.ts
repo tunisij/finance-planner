@@ -25,7 +25,7 @@ export class AccountInputComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.inputDataService.getAccounts().subscribe(accounts => {
-      this.accounts = accounts.map(account => new Account(account.name, account.balance, account.date, account.id));
+      this.accounts = accounts.map(account => new Account(account.name, account.balance, account.id));
 
       if (this.accounts.length === 0) {
         this.addAccount();
@@ -44,7 +44,7 @@ export class AccountInputComponent implements OnInit, OnDestroy {
   }
 
   addAccount() {
-    this.accounts.push(new Account('Account ' + (this.accounts.length + 1), 0, new Date()));
+    this.accounts.push(new Account('Account ' + (this.accounts.length + 1), 0));
     this.selectedIndex = this.accounts.length - 1;
   }
 
