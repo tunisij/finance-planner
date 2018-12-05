@@ -26,6 +26,4 @@ public class Account {
     @Column(name = "balance")
     private String balance;
 
-    @Column(name = "date")
-    private LocalDate date;
 }

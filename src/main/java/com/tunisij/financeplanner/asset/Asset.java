@@ -26,6 +26,4 @@ public class Asset {
     @Column(name = "value")
     private String value;
 
-    @Column(name = "date")
-    private LocalDate date;
 }
